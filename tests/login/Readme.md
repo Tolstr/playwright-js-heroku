@@ -1,3 +1,16 @@
+DAY 2:
+Added 2 more tests for invalid login and empty credentials.
+before each is porwerful to avouid code duplication.
+Copilot accelerate the process so much faster. 
+If you know what you are doing, the study session are quick and effective.
+Gihub commands to add, commit and push are easy to remember with ACP - all cool projects goes to GitHub.
+
+
+
+
+
+DAY 1:
+
 The strategy for selectors is to use the most specific and reliable selectors available. In this case, using `getByLabel` for the username and password fields is preferred as it directly targets the input fields by their labels, which is more robust than using IDs or test IDs that may change or be less descriptive. The `getByLabel` method is part of Playwright's API that allows for more semantic and accessible selectors, making the tests easier to read and maintain.
 
 
