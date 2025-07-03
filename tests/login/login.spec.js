@@ -1,50 +1,32 @@
 import {test, expect} from '@playwright/test';
+import {LoginPage} from '../../pages/loginPage.js'; 
 
-const baseURL = 'https://the-internet.herokuapp.com';
 
 test.describe('Login Flow', () => {
+    let loginPage;
+
     test.beforeEach(async ({page}) => {
-        await page.goto(baseURL + '/login');
+        loginPage = new LoginPage(page);
+        await loginPage.goto();
     });
 
+
+    test('Valid login', async () => {
+        await loginPage.login('tomsmith', 'SuperSecretPassword!');
+        await loginPage.assertLoginMessage('You logged into a secure area!');
+    });
+
+    test('Invalid login and invalid password', async () => {
+        await loginPage.login('invalidUser', 'invalidPassword');
+        await loginPage.assertLoginMessage('Your username is invalid!');
+    });
+        test('Empty credentials', async () => {
+            await loginPage.login('', '');
+            await loginPage.assertLoginMessage('Your username is invalid!');
+        });
     
-    test('Valid login', async ({page}) => {
-        await page.getByLabel('Username').fill('tomsmith');
-        await page.getByLabel('password').fill('SuperSecretPassword!');
-        await page.locator('button[type="submit"]').click();
-
-        await expect(page.locator('#flash')).toBeVisible();
-        await expect(page.locator('#flash')).toHaveText('You logged into a secure area!');
-        await page.locator('a[href="/logout"]').click();
-        await expect(page.locator('#flash')).toHaveText('You logged out of the secure area!');
-        await expect(page.locator('#flash')).toBeVisible();
+            test('Valid username and wrong password', async () => {
+                await loginPage.login('tomsmith', 'WrongPassword!');
+                await loginPage.assertLoginMessage('Your password is invalid!');
+            });
     });
-
-
-    test('Invalid login and invalid password', async ({page}) => {
-        await page.getByLabel('Username').fill('invalidUser');
-        await page.getByLabel('password').fill('invalidPassword');
-        await page.locator('button[type="submit"]').click();
-
-        await expect(page.locator('#flash')).toBeVisible();
-        await expect(page.locator('#flash')).toHaveText('Your Username is invalid!');
-    });
-
-
-    test ('Empty credentials', async ({page}) => {
-        await page.locator('button[type="submit"]').click();
-
-        await expect(page.locator('#flash')).toBeVisible();
-        await expect(page.locator('#flash')).toHaveText('Your Username is invalid!');
-    });
-
-
-    test('Valid Username and wrong password', async ({page}) => {
-        await page.getByLabel('Username').fill('tomsmith');
-        await page.getByLabel('password').fill('WrongPassword!');
-        await page.locator('button[type="submit"]').click();
-
-        await expect(page.locator('#flash')).toBeVisible();
-        await expect(page.locator('#flash')).toHaveText('Your password is invalid!');
-    });
-});
