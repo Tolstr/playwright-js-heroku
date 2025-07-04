@@ -1,3 +1,9 @@
+DAY 3
+Why POM is important? Allows to reuse common functionality across multiple tests, making the code cleaner and easier to maintain.
+What are the benefits of this structure? It promotes modularity, reusability, and separation of concerns, making it easier to manage and scale the test suite as the application grows.
+What would you do next if the login page had CAPTCHA? You would need to implement a strategy to handle CAPTCHA, such as using a service to bypass it or mocking the CAPTCHA response in your tests. This might involve creating a separate test environment or using API calls to simulate successful login without CAPTCHA.
+
+
 DAY 2:
 Added 2 more tests for invalid login and empty credentials.
 before each is porwerful to avouid code duplication.
