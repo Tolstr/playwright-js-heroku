@@ -2,7 +2,34 @@ import {test, expect} from '@playwright/test';
 import {LoginPage} from '../../pages/loginPage.js'; 
 
 
-test.describe('Login Flow', () => {
+const loginData = [
+    { 
+        username: 'tomsmith', 
+        password: 'SuperSecretPassword!', 
+        expectedMessage: 'You logged into a secure area!',
+        isSuccess: true 
+    },
+    { 
+        username: 'invalidUser', 
+        password: 'invalidPassword', 
+        expectedMessage: 'Your username is invalid!',
+        isSuccess: false 
+    },
+    { 
+        username: '', 
+        password: '', 
+        expectedMessage: 'Your username is invalid!',
+        isSuccess: false 
+    },
+    { 
+        username: 'tomsmith', 
+        password: 'WrongPassword!', 
+        expectedMessage: 'Your password is invalid!',
+        isSuccess: false 
+    }
+];
+
+test.describe('Data-Driven Login Flow', () => {
     let loginPage;
 
     test.beforeEach(async ({page}) => {
@@ -10,23 +37,14 @@ test.describe('Login Flow', () => {
         await loginPage.goto();
     });
 
-
-    test('Valid login', async () => {
-        await loginPage.login('tomsmith', 'SuperSecretPassword!');
-        await loginPage.assertLoginMessage('You logged into a secure area!');
-    });
-
-    test('Invalid login and invalid password', async () => {
-        await loginPage.login('invalidUser', 'invalidPassword');
-        await loginPage.assertLoginMessage('Your username is invalid!');
-    });
-        test('Empty credentials', async () => {
-            await loginPage.login('', '');
-            await loginPage.assertLoginMessage('Your username is invalid!');
+    loginData.forEach(({username, password, expectedMessage, isSuccess}) => {
+        test(`Login with username: "${username}" and password: "${password}"`, async () => {
+            await loginPage.login(username, password);
+            await loginPage.assertLoginMessage(expectedMessage);
+            if (isSuccess) {
+                await loginPage.logout();
+                await loginPage.assertLogoutMessage('You logged out of the secure area!');
+            }
         });
-    
-            test('Valid username and wrong password', async () => {
-                await loginPage.login('tomsmith', 'WrongPassword!');
-                await loginPage.assertLoginMessage('Your password is invalid!');
-            });
+    }); 
     });
