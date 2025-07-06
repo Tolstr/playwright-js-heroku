@@ -1,3 +1,7 @@
+DAY 4:
+Added testdata array for login tests to handle multiple test cases in a more structured way. This allows for easy addition of new test cases without duplicating code.
+
+
 DAY 3
 Why POM is important? Allows to reuse common functionality across multiple tests, making the code cleaner and easier to maintain.
 What are the benefits of this structure? It promotes modularity, reusability, and separation of concerns, making it easier to manage and scale the test suite as the application grows.
