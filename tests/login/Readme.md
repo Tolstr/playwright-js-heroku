@@ -1,3 +1,13 @@
+Day July 16, 2025:
+Added dropdown.spec.js to test dropdown functionality on the login page.
+Covered scenarios include selecting an option from the dropdown and verifying the selected value.
+Was using for loop to iterate through options.
+Added label type 'regression' to the test to categorize it for regression testing.
+To run the tests, use the command:npx playwright test dropdown.spec.js --headed --debug   
+
+
+
+
 Day 5:
 ⚠️ Note: The site https://the-internet.herokuapp.com does not persist sessions across browser contexts.
 The "Session Reuse" test simulates login within the same test rather than relying on saved storage state.
