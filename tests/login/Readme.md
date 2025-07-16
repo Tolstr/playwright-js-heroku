@@ -1,3 +1,9 @@
+Day 5:
+⚠️ Note: The site https://the-internet.herokuapp.com does not persist sessions across browser contexts.
+The "Session Reuse" test simulates login within the same test rather than relying on saved storage state.
+This code is still a valid template for apps that do persist login sessions via cookies or local storage.
+
+
 DAY 4:
 Added testdata array for login tests to handle multiple test cases in a more structured way. This allows for easy addition of new test cases without duplicating code.
 
