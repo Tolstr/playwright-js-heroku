@@ -3,10 +3,10 @@ import { LoginPage } from '../../pages/loginPage.js';
 
 // Data-driven login tests
 const loginData = [
-  { username: 'tomsmith', password: 'SuperSecretPassword!', expectedMessage: 'You logged into a secure area!', isSuccess: true, type: 'smoke' },
-  { username: 'invalidUser', password: 'invalidPassword', expectedMessage: 'Your username is invalid!', isSuccess: false, type: 'regression' },
+  { username: 'tomsmith', password: 'SuperSecretPassword!', expectedMessage: 'You logged into a secure area!', isSuccess: true, type: '@smoke' },
+  { username: 'invalidUser', password: 'invalidPassword', expectedMessage: 'Your username is invalid!', isSuccess: false, type: '@regression' },
   { username: '', password: '', expectedMessage: 'Your username is invalid!', isSuccess: false, type: 'regression' },
-  { username: 'tomsmith', password: 'WrongPassword!', expectedMessage: 'Your password is invalid!', isSuccess: false, type: 'regression' }
+  { username: 'tomsmith', password: 'WrongPassword!', expectedMessage: 'Your password is invalid!', isSuccess: false, type: '@regression' }
 ];
 
 test.describe('Data-Driven Login Flow', () => {

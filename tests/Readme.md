@@ -1,4 +1,4 @@
-Day July 16, 2025:
+Day July 16/17, 2025:
 Added dropdown.spec.js to test dropdown functionality on the login page.
 Covered scenarios include selecting an option from the dropdown and verifying the selected value.
 Was using for loop to iterate through options.

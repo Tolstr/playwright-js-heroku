@@ -3,8 +3,8 @@ import { test, expect } from '@playwright/test';
 //Dropdown tests for the "Dropdown" page 
 test.describe('Dropdown Tests', () => {
   const options = [
-    { value: '2', label: 'Option 2', type: 'regression' },
-    { value: '1', label: 'Option 1', type: 'regression' }
+    { value: '2', label: 'Option 2', type: '@regression' },
+    { value: '1', label: 'Option 1', type: '@regression' }
   ];
   test.beforeEach(async ({ page }) => {
     await page.goto('https://the-internet.herokuapp.com/dropdown');
