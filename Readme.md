@@ -65,3 +65,6 @@ Automated test suite for [the-internet.herokuapp.com/login](https://the-internet
 npx playwright test
 npx playwright --headed
 npx playwright --debug
+
+
+<!-- Testing PR smoke tests -->
