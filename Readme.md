@@ -1,3 +1,6 @@
+![Playwright Tests](https://github.com/Tolstr/playwright-js-heroku/actions/workflows/playwright.yml/badge.svg)
+
+
 Day July 16/17, 2025:
 Added dropdown.spec.js to test dropdown functionality on the login page.
 Covered scenarios include selecting an option from the dropdown and verifying the selected value.
