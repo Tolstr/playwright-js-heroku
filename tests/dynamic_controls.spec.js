@@ -19,7 +19,7 @@ test.describe('Dynamic Controls Tests', () => {
     });
 
     test('Should remove and add checkbox @regression', async ({ page }) => {
-        test.info().annotations.push({ type: 'regression', description: 'Regression test for removing and adding checkbox @regression' });
+        test.info().annotations.push({ type: '@regression', description: 'Regression test for removing and adding checkbox @regression' });
 
         const checkbox = page.locator('#checkbox');
         const message = page.locator('#message');
@@ -37,7 +37,7 @@ test.describe('Dynamic Controls Tests', () => {
     });
     
     test('Should enable and disable input field @regression', async ({ page }) => {
-        test.info().annotations.push({ type: 'regression', description: 'Regression test for enabling and disabling input field @regression' });
+        test.info().annotations.push({ type: '@regression', description: 'Regression test for enabling and disabling input field @regression' });
 
         const inputField = page.locator('#input-example input');
         const toggleButton = page.locator('#input-example button');
