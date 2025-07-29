@@ -7,7 +7,7 @@ export default defineConfig({
   use: {
     storageState: 'auth.json',
     baseURL: 'https://the-internet.herokuapp.com',
-    headless: true,
+    headless: false,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
   },
@@ -18,6 +18,23 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         storageState: 'auth.json',
+        channel: 'chrome',
+      },
+    },
+    {
+      name: 'firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        storageState: 'auth.json',
+        channel: 'firefox',
+      },
+    },
+    {
+      name: 'webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        storageState: 'auth.json',
+        // No real Safari via Playwright, but we can keep WebKit as is
       },
     },
   ],
