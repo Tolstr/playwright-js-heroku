@@ -25,8 +25,15 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Run tests
-        run: npx playwright test
+      # - name: Run tests
+      #   run: npx playwright test
+      - name: Run appropriate test set
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            npx playwright test --grep @smoke
+          else
+            npx playwright test --grep @regression
+          fi
 
       - name: Upload HTML report
         if: always()

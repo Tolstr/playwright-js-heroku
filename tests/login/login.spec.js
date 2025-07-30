@@ -5,7 +5,7 @@ import { LoginPage } from '../../pages/loginPage.js';
 const loginData = [
   { username: 'tomsmith', password: 'SuperSecretPassword!', expectedMessage: 'You logged into a secure area!', isSuccess: true, type: '@smoke' },
   { username: 'invalidUser', password: 'invalidPassword', expectedMessage: 'Your username is invalid!', isSuccess: false, type: '@regression' },
-  { username: '', password: '', expectedMessage: 'Your username is invalid!', isSuccess: false, type: 'regression' },
+  { username: '', password: '', expectedMessage: 'Your username is invalid!', isSuccess: false, type: '@regression' },
   { username: 'tomsmith', password: 'WrongPassword!', expectedMessage: 'Your password is invalid!', isSuccess: false, type: '@regression' }
 ];
 
@@ -18,7 +18,7 @@ test.describe('Data-Driven Login Flow', () => {
   });
 
   loginData.forEach(({ username, password, expectedMessage, isSuccess, type }) => {
-    test(`${type.toUpperCase()} - Login with username: "${username}" and password: "${password}"`, async ({ page }) => {
+    test(`${type.toUpperCase()} - Login with username: "${username}" and password: "${password}" ${type}`, async ({ page }) => {
       await loginPage.login(username, password);
       await loginPage.assertLoginMessage(expectedMessage);
       if (isSuccess) {
