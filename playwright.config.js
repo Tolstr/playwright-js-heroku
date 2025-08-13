@@ -1,43 +1,46 @@
+import 'dotenv/config';
+
 // playwright.config.js
+import 'dotenv/config';
 import { defineConfig, devices } from '@playwright/test';
+
 
 export default defineConfig({
   testDir: './tests',
   timeout: 30000,
   retries: 2,
   reporter: [['html', { outputFolder: 'playwright-report', open: 'never' }]],
+  // keep only generic settings here; put baseURL/storageState per project
   use: {
-    storageState: 'auth.json',
-    baseURL: 'https://the-internet.herokuapp.com',
     headless: true,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
   },
   globalSetup: './global-setup.mjs',
+
   projects: [
+    // UI project (Chrome)
     {
-      name: 'chrome',
+      name: 'ui',
+      // inherit testDir ('./tests')
+      // don't run API specs under the UI project:
+      testIgnore: ['tests/api/**'],
       use: {
         ...devices['Desktop Chrome'],
-        storageState: 'auth.json',
         channel: 'chrome',
+        baseURL: 'https://the-internet.herokuapp.com',
+        storageState: 'auth.json',
       },
     },
-    // {
-    //   name: 'firefox',
-    //   use: {
-    //     ...devices['Desktop Firefox'],
-    //     storageState: 'auth.json',
-    //     channel: 'firefox',
-    //   },
-    // },
-    // {
-    //   name: 'webkit',
-    //   use: {
-    //     ...devices['Desktop Safari'],
-    //     storageState: 'auth.json',
-    //     // No real Safari via Playwright, but we can keep WebKit as is
-    //   },
-    // },
+
+    // API project
+    {
+      name: 'api',
+      testDir: 'tests/api',
+      use: {
+        baseURL: process.env.API_BASE_URL,   // e.g. https://api.realworld.io/api
+        storageState: undefined,             // ensure no UI state leaks in
+      },
+    },
   ],
 });

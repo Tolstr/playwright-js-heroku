@@ -6,14 +6,19 @@
   "type": "module",
   "scripts": {
     "setup": "node global-setup.mjs",
-    "test": "npx playwright test"
+    "test": "npx playwright test",
+    "ui": "playwright test --project=ui",
+    "api": "SKIP_UI_SETUP=1 playwright test --project=api",
+    "watch:ui": "playwright test --ui --project=ui",
+    "watch:api": "SKIP_UI_SETUP=1 playwright test --ui --project=api"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.53.0",
-    "@types/node": "^24.0.8"
+    "@types/node": "^24.2.1",
+    "dotenv": "^17.2.1",
+    "typescript": "^5.9.2"
   }
 }
-
