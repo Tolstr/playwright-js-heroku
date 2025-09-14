@@ -1,19 +1,14 @@
 {
-  "name": "login_automation",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
+  "name": "playwright-js-heroku",
+  "private": true,
   "scripts": {
-    "setup": "node global-setup.mjs",
-    "test": "npx playwright test"
+    "test": "playwright test",
+    "typecheck": "tsc --noEmit"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.53.0",
-    "@types/node": "^24.0.8"
+    "@playwright/test": "^1.46.0",
+    "dotenv": "^16.4.5",
+    "typescript": "^5.4.0",
+    "tsconfig-paths": "^4.2.0"
   }
 }
-
