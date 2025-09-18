@@ -7,15 +7,15 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  playwright-tests:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
 
@@ -30,9 +30,9 @@ jobs:
       - name: Run appropriate test set
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            npx playwright test --grep @smoke
+            npx playwright test --grep @smoke --reporter=line
           else
-            npx playwright test --grep @regression
+            npx playwright test --grep @regression --reporter=line
           fi
 
       - name: Upload HTML report
@@ -41,3 +41,9 @@ jobs:
         with:
           name: playwright-report
           path: playwright-report
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
